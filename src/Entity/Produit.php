@@ -31,8 +31,9 @@ class Produit
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Categorie $categorie = null;
 
-    #[ORM\ManyToMany(targetEntity: Image::class, mappedBy: 'produits')]
-    private Collection $images;
+
+    #[ORM\Column(length: 255)]
+    private ?string $imgUrl = null;
 
     public function __construct()
     {
@@ -123,29 +124,16 @@ class Produit
         return $this;
     }
 
-    /**
-     * @return Collection<int, Image>
-     */
-    public function getImages(): Collection
+
+
+    public function getImgUrl(): ?string
     {
-        return $this->images;
+        return $this->imgUrl;
     }
 
-    public function addImage(Image $image): static
+    public function setImgUrl(string $imgUrl): static
     {
-        if (!$this->images->contains($image)) {
-            $this->images->add($image);
-            $image->addProduit($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): static
-    {
-        if ($this->images->removeElement($image)) {
-            $image->removeProduit($this);
-        }
+        $this->imgUrl = $imgUrl;
 
         return $this;
     }
