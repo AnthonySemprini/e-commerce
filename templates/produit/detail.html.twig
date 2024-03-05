@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{produit.name}}
+{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Prix : {{produit.prix}} €</h2>
+<img src="assets/img/{{produit.imgUrl}}" alt="img produit">
+<p>{{produit.categorie.name}}</p>
+<p>Description{{produit.description}}</p>
+
+
+
+
+
+{% endblock %}
