@@ -3,15 +3,16 @@
 {% block title %}Hello ProduitController!{% endblock %}
 
 {% block body %}
-    <h1 class="text-center text-blue-500 mt-5 text-xl underline">Produits</h1>
-
+<h1 class="text-center text-blue-500 mt-5 text-xl underline">Produits</h1>
+<div class="allCard grid grid-cols-3 gap-4 p-4">
     {% for produit in produits %}
-        <p>{{ produit.name }}</p>
-        <p>{{ produit.prix }}</p>
+    <div class="card bg-slate-300 rounded-xl">
+        <p class="text-center">{{ produit.name }}</p>
         <p>{{ produit.description }}</p>
         <p>{{ produit.categorie.name }}</p>
-        <br>
-        <a href="{{path('app_detail_produit', {'id': produit.id})}}">detail</a>
-        <br><br>
+        <p>{{ produit.prix }}</p>
+        <p class="text-center"><a href="{{path('app_detail_produit', {'id': produit.id})}}">detail</a></p>
+    </div>
     {% endfor %}
+</div>
 {% endblock %}

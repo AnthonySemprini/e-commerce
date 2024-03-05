@@ -6,12 +6,16 @@
 
 {% block body %}
 
-
-
-<h2>Prix : {{produit.prix}} €</h2>
-<img src="assets/img/{{produit.imgUrl}}" alt="img produit">
-<p>{{produit.categorie.name}}</p>
-<p>Description{{produit.description}}</p>
+<div class="main h-full">
+    <h1 class="text-center mt-5 text-3xl font-bold">{{produit.name}}</h1>
+    <div class="detail h-full flex flex-col justify-center items-center content-center">
+        <img src="assets/img/{{produit.imgUrl}}" alt="img produit">
+        <p>{{produit.categorie.name}}</p>
+        <p>Description{{produit.description}}</p>
+        <h2>Prix : {{produit.prix}} €</h2>
+        <button class="btn font-extrabold bg-slate-300 hover:bg-slate-500 hover:text-white rounded-xl py-1 px-2">Add</button>
+    </div>
+</div>
 
 
 

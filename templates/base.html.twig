@@ -14,7 +14,7 @@
         {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
-    <body>
+    <body class="h-[100vh]">
         {% block body %}{% endblock %}
         {{ encore_entry_script_tags('app') }}
     </body>
