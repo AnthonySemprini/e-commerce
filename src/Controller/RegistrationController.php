@@ -70,14 +70,16 @@ class RegistrationController extends AbstractController
     public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserRepository $userRepository): Response
     {
         // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        // dd('verifyUserEmail called');
+        // dd($request->query->all());
 
-        // validate email confirmation link, sets User::isVerified=true and persists
         $id = $request->query->get('id');
         // dd($id);
         if ($id === null) {
             return $this->redirectToRoute('app_register');
         }
         $user = $userRepository->find($id);
+        // dd($user);
         if ($user === null) {
             return $this->redirectToRoute('app_register');
         }
