@@ -51,7 +51,7 @@ class RegistrationController extends AbstractController
              // genere un email de confirmation et l'envoi a l'utilisateur
              $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
              (new TemplatedEmail())
-                 ->from(new Address('admin@barber.com', 'Admin site Barber'))
+                 ->from(new Address('admin@e-commerce.com', 'Admin'))
                  ->to($user->getEmail())
                  ->subject('Please Confirm your Email')
                  ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -82,7 +82,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
         try {
-            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
+            $this->emailVerifier->handleEmailConfirmation($request, $user);
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
 
@@ -94,4 +94,6 @@ class RegistrationController extends AbstractController
 
         return $this->redirectToRoute('app_login');
     }
+
+
 }

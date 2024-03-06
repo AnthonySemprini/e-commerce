@@ -15,6 +15,15 @@
         {% endblock %}
     </head>
     <body class="h-[100vh]">
+        <nav class="h-10">
+            <ul class="flex gap-2">
+                <li class=""><a class="" href="{{path('app_home')}}">Home</a></li>
+                <li class=""><a class="" href="{{path('app_produit')}}">Products</a></li>
+                <li class=""><a class="" href="{{path('app_login')}}">Login</a></li>
+                <li class=""><a class="" href="{{path('app_register')}}">Register</a></li>
+                <li class=""><a class="" href="{{path('app_logout')}}">Logout</a></li>
+            </ul>
+        </nav>
         {% block body %}{% endblock %}
         {{ encore_entry_script_tags('app') }}
     </body>
