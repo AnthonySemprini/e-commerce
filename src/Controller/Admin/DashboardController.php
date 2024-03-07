@@ -60,11 +60,16 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::section('Produits');
         yield MenuItem::linkToCrud('Voir produits', 'fas fa-eye', Produit::class);
-
+        
         yield MenuItem::section('Categories');
         yield MenuItem::linkToCrud('Voir categories', 'fas fa-eye', Categorie::class);
-
+        
         yield MenuItem::section('Commande');
         yield MenuItem::linkToCrud('Voir commandes', 'fas fa-eye', Commande::class);
+
+
+        yield MenuItem::section('----------------------------------');
+        
+        yield MenuItem::linkToUrl('User HomePage', 'fa fa-arrow-left', '/');
     }
 }

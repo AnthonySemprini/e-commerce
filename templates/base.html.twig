@@ -19,9 +19,15 @@
             <ul class="flex gap-2">
                 <li class=""><a class="" href="{{path('app_home')}}">Home</a></li>
                 <li class=""><a class="" href="{{path('app_produit')}}">Products</a></li>
+                {% if app.user %}
+                <li class=""><a class="" href="{{path('app_logout')}}">Logout</a></li>
+                 {% if is_granted('ROLE_ADMIN') %}
+                 <a href="{{path('admin')}}">Panneau Admin</a>
+                 {% endif %}  
+                 {% else %} 
                 <li class=""><a class="" href="{{path('app_login')}}">Login</a></li>
                 <li class=""><a class="" href="{{path('app_register')}}">Register</a></li>
-                <li class=""><a class="" href="{{path('app_logout')}}">Logout</a></li>
+                {% endif %}
             </ul>
         </nav>
         {% block body %}{% endblock %}
