@@ -25,8 +25,8 @@ class Produit
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\OneToMany(targetEntity: commandeproduit::class, mappedBy: 'produit')]
-    private Collection $commandeproduits;
+    #[ORM\OneToMany(targetEntity: CommandeProduit::class, mappedBy: 'produit')]
+    private Collection $CommandeProduits;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Categorie $categorie = null;
@@ -37,7 +37,7 @@ class Produit
 
     public function __construct()
     {
-        $this->commandeproduits = new ArrayCollection();
+        $this->CommandeProduits = new ArrayCollection();
         $this->images = new ArrayCollection();
     }
 
@@ -83,29 +83,29 @@ class Produit
     }
 
     /**
-     * @return Collection<int, commandeproduit>
+     * @return Collection<int, CommandeProduit>
      */
-    public function getCommandeproduits(): Collection
+    public function getCommandeProduits(): Collection
     {
-        return $this->commandeproduits;
+        return $this->CommandeProduits;
     }
 
-    public function addCommandeproduit(commandeproduit $commandeproduit): static
+    public function addCommandeProduit(CommandeProduit $CommandeProduit): static
     {
-        if (!$this->commandeproduits->contains($commandeproduit)) {
-            $this->commandeproduits->add($commandeproduit);
-            $commandeproduit->setProduit($this);
+        if (!$this->CommandeProduits->contains($CommandeProduit)) {
+            $this->CommandeProduits->add($CommandeProduit);
+            $CommandeProduit->setProduit($this);
         }
 
         return $this;
     }
 
-    public function removeCommandeproduit(commandeproduit $commandeproduit): static
+    public function removeCommandeProduit(CommandeProduit $CommandeProduit): static
     {
-        if ($this->commandeproduits->removeElement($commandeproduit)) {
+        if ($this->CommandeProduits->removeElement($CommandeProduit)) {
             // set the owning side to null (unless already changed)
-            if ($commandeproduit->getProduit() === $this) {
-                $commandeproduit->setProduit(null);
+            if ($CommandeProduit->getProduit() === $this) {
+                $CommandeProduit->setProduit(null);
             }
         }
 

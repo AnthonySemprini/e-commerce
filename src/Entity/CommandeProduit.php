@@ -16,10 +16,10 @@ class CommandeProduit
     #[ORM\Column]
     private ?int $qtt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'commandeproduits')]
+    #[ORM\ManyToOne(inversedBy: 'CommandeProduits')]
     private ?Commande $commande = null;
 
-    #[ORM\ManyToOne(inversedBy: 'commandeproduits')]
+    #[ORM\ManyToOne(inversedBy: 'CommandeProduits')]
     private ?Produit $produit = null;
 
     public function getId(): ?int
@@ -61,5 +61,8 @@ class CommandeProduit
         $this->produit = $produit;
 
         return $this;
+    }
+    public function __toString(): string {
+        return $this->produit ? $this->produit->getName() : '';
     }
 }

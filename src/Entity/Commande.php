@@ -40,12 +40,12 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?User $user = null;
 
-    #[ORM\OneToMany(targetEntity: commandeproduit::class, mappedBy: 'commande')]
-    private Collection $commandeproduits;
+    #[ORM\OneToMany(targetEntity: CommandeProduit::class, mappedBy: 'commande')]
+    private Collection $CommandeProduits;
 
     public function __construct()
     {
-        $this->commandeproduits = new ArrayCollection();
+        $this->CommandeProduits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -150,29 +150,29 @@ class Commande
     }
 
     /**
-     * @return Collection<int, commandeproduit>
+     * @return Collection<int, CommandeProduit>
      */
-    public function getCommandeproduits(): Collection
+    public function getCommandeProduits(): Collection
     {
-        return $this->commandeproduits;
+        return $this->CommandeProduits;
     }
 
-    public function addCommandeproduit(commandeproduit $commandeproduit): static
+    public function addCommandeProduit(CommandeProduit $CommandeProduit): static
     {
-        if (!$this->commandeproduits->contains($commandeproduit)) {
-            $this->commandeproduits->add($commandeproduit);
-            $commandeproduit->setCommande($this);
+        if (!$this->CommandeProduits->contains($CommandeProduit)) {
+            $this->CommandeProduits->add($CommandeProduit);
+            $CommandeProduit->setCommande($this);
         }
 
         return $this;
     }
 
-    public function removeCommandeproduit(commandeproduit $commandeproduit): static
+    public function removeCommandeProduit(CommandeProduit $CommandeProduit): static
     {
-        if ($this->commandeproduits->removeElement($commandeproduit)) {
+        if ($this->CommandeProduits->removeElement($CommandeProduit)) {
             // set the owning side to null (unless already changed)
-            if ($commandeproduit->getCommande() === $this) {
-                $commandeproduit->setCommande(null);
+            if ($CommandeProduit->getCommande() === $this) {
+                $CommandeProduit->setCommande(null);
             }
         }
 
