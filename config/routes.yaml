@@ -1,5 +1,13 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+controller:
+  resource:
+    path: ../src/Controller/
+    namespace: App\Controller
+  type: attribute
+
+categorie_show:
+  path: /categorie/{slug}
+  controller: App\Controller\CategorieController::show
+
+produit_shox:
+  path: /produit/{slug}
+  controller: App\Controller\ProduitController::shox

@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Produit;
 use App\Repository\ProduitRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Produit;
 
 class ProduitController extends AbstractController
 {
@@ -20,13 +20,24 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/detail{id}', name: 'app_detail_produit')]
-    public function detailProduit(Produit $produit): Response
+    #[Route('/show/{slug}', name: 'app_show_produit')]
+    public function show(ProduitRepository $produitRepository, ?string $slug = null): Response
     {
-        //redirige vers la vue du detail d'un produit
-        return $this->render('produit/detail.html.twig',[
+        if ($slug === null) {
+            
+            return $this->redirectToRoute('app_home'); 
+        }
+
+        $produit = $produitRepository->findOneBy(['slug' => $slug]);
+
+        if (!$produit) {
+            throw $this->createNotFoundException('Le produit demandé n\'existe pas.');
+        }
+
+        return $this->render('produit/show.html.twig', [
             'produit' => $produit,
-        ]
-    );
+        ]);
+    
     }
 }
+

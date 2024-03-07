@@ -18,6 +18,7 @@ class Categorie
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
+    
     #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'categorie')]
     private Collection $produits;
 

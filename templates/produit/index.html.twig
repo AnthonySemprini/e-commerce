@@ -11,7 +11,8 @@
         <p>{{ produit.description }}</p>
         <p>{{ produit.categorie.name }}</p>
         <p>{{ produit.prix }}</p>
-        <p class="text-center"><a href="{{path('app_detail_produit', {'id': produit.id})}}">detail</a></p>
+        <p class="text-center"><a href="{{ path('app_show_produit', {'slug': produit.slug}) }}
+            ">detail</a></p>
     </div>
     {% endfor %}
 </div>
