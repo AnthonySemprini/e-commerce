@@ -9,7 +9,7 @@
 <div class="main h-full">
     <h1 class="text-center mt-5 text-3xl font-bold">{{produit.name}}</h1>
     <div class="detail h-full flex flex-col justify-center items-center content-center">
-        <img src="assets/img/{{produit.imgUrl}}" alt="img produit">
+        <img class="h-1/4 w-auto" src="/uploads/images/{{ produit.imgUrl }}" alt="{{produit.name}}">
         <p>{{produit.categorie.name}}</p>
         <p>Description{{produit.description}}</p>
         <h2>Prix : {{produit.prix}} €</h2>

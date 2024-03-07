@@ -8,9 +8,8 @@
     {% for produit in produits %}
     <div class="card bg-slate-300 rounded-xl">
         <p class="text-center">{{ produit.name }}</p>
-        <p>{{ produit.description }}</p>
-        <p>{{ produit.categorie.name }}</p>
-        <p>{{ produit.prix }}</p>
+        <img class="h-1/4 w-auto" src="/uploads/images/{{ produit.imgUrl }}" alt="{{produit.name}}">
+        <p>{{ produit.prix }}€</p>
         <p class="text-center"><a href="{{ path('app_show_produit', {'slug': produit.slug}) }}
             ">detail</a></p>
     </div>
