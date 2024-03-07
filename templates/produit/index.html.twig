@@ -4,15 +4,24 @@
 
 {% block body %}
 <h1 class="text-center text-blue-500 mt-5 text-xl underline">Produits</h1>
-<div class="allCard grid grid-cols-3 gap-4 p-4">
+<div class="allCard grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
     {% for produit in produits %}
-    <div class="card bg-slate-300 rounded-xl">
-        <p class="text-center">{{ produit.name }}</p>
-        <img class="h-1/4 w-auto" src="/uploads/images/{{ produit.imgUrl }}" alt="{{produit.name}}">
-        <p>{{ produit.prix }}€</p>
-        <p class="text-center"><a href="{{ path('app_show_produit', {'slug': produit.slug}) }}
-            ">detail</a></p>
+    <div class="card flex flex-col justify-between bg-gray-100 rounded-xl shadow-lg overflow-hidden">
+        <div class="p-5">
+            <p class="text-2xl font-semibold text-center mb-3">{{ produit.name }}</p>
+            <div class="flex justify-center">
+                <img class="w-3/4 h-auto object-contain rounded-xl" src="/uploads/images/{{ produit.imgUrl }}" alt="{{ produit.name }}">
+            </div>
+        </div>
+        <div class="px-5 py-3 bg-gray-100">
+            <p class="text-center text-xl font-bold">{{ produit.prix }}€</p>
+            <p class="text-center mt-2">
+                <a class="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors" href="{{ path('app_show_produit', {'slug': produit.slug}) }}">Détail</a>
+            </p>
+        </div>
     </div>
     {% endfor %}
 </div>
+
+
 {% endblock %}

@@ -6,16 +6,65 @@
 
 {% block body %}
 
-<div class="main h-full">
-    <h1 class="text-center mt-5 text-3xl font-bold">{{produit.name}}</h1>
-    <div class="detail h-full flex flex-col justify-center items-center content-center">
-        <img class="h-1/4 w-auto" src="/uploads/images/{{ produit.imgUrl }}" alt="{{produit.name}}">
-        <p>{{produit.categorie.name}}</p>
-        <p>Description{{produit.description}}</p>
-        <h2>Prix : {{produit.prix}} €</h2>
-        <button class="btn font-extrabold bg-slate-300 hover:bg-slate-500 hover:text-white rounded-xl py-1 px-2">Add</button>
+<div class="main min-h-screen bg-white py-10 flex flex-col justify-center">
+    <h1 class="text-center text-lg leading-tight font-bold text-gray-900 mb-4">{{ produit.name }}</h1>
+    <div class="detail max-w-full mx-4 md:mx-16 bg-gray-100 shadow-lg rounded-lg overflow-hidden">
+        <div class="flex flex-col md:flex-row items-start">
+            <div class="w-full md:w-1/2 p-2 md:p-4">
+                <div id="main-image" class="flex justify-center">
+                    <img src="/uploads/images/{{ produit.imgUrl }}" alt="{{ produit.name }}" class="object-cover rounded-md max-w-full h-auto">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 p-4 md:p-8 flex flex-col justify-between">
+                <div>
+                    <div class="text-center uppercase tracking-wide text-sm text-indigo-500 font-semibold">{{ produit.categorie.name }}</div>
+                    <p class="mt-2 text-gray-600 text-center">{{ produit.description }}</p>
+                    <div class="flex justify-center mt-4">
+                        <span class="text-gray-500">Prix :</span>
+                        <span class="ml-2 text-lg font-semibold text-gray-900">{{ produit.prix }} €</span>
+                    </div>
+                    <div class="flex justify-center mt-4">
+                        <div class="inline-flex items-center">
+                            <button class="btn font-bold py-2 px-4 rounded-l bg-red-500 text-white hover:bg-red-700" onclick="changeQuantity(-1)">-</button>
+                            <input type="text" id="quantity" name="quantity" value="1" class="text-center focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-none" style="width: 60px;">
+                            <button class="btn font-bold py-2 px-4 rounded-r bg-green-500 text-white hover:bg-green-700" onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-6 space-x-2">
+                        <button class="btn font-bold py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-700">Ajouter au Panier</button>
+                        <button class="btn font-bold py-2 px-4 rounded bg-green-500 text-white hover:bg-green-700">Favoris</button>
+                    </div>
+                </div>
+                <!-- Miniatures -->
+                <div class="flex justify-center p-4 space-x-2 mt-4">
+                    <img src="/uploads/images/image2.webp" class="h-24 w-auto object-cover cursor-pointer border-2 border-gray-300 rounded-md" onclick="changeMainImage(this)">
+                    <img src="/uploads/images/image3.webp" class="h-24 w-auto object-cover cursor-pointer border-2 border-gray-300 rounded-md" onclick="changeMainImage(this)">
+                    <img src="/uploads/images/image4.webp" class="h-24 w-auto object-cover cursor-pointer border-2 border-gray-300 rounded-md" onclick="changeMainImage(this)">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+<script>
+function changeQuantity(change) {
+    let quantityInput = document.getElementById('quantity');
+    let currentQuantity = parseInt(quantityInput.value);
+    let newQuantity = currentQuantity + change;
+    if (newQuantity < 1) newQuantity = 1; 
+    quantityInput.value = newQuantity;
+}
+function changeMainImage(clickedImg) {
+   
+    var mainImage = document.getElementById('main-image').getElementsByTagName('img')[0];
+    mainImage.src = clickedImg.src;
+    mainImage.alt = clickedImg.alt;
+}
+</script>
+
+
 
 
 
