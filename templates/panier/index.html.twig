@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!{% endblock %}
+
+{% block body %}
+<div class="panierPage">
+	<h1>Panier</h1>
+	{% if articles | length > 0 %}
+		<table class="panier">
+			<tr>
+				<th class="panier imgPanier">Image</th>
+				<th class="panier">Produit</th>
+				<th class="panier">Prix</th>
+				
+				<th class="panier">Qtt</th>
+				
+				<th class="panier">Sous-total</th>
+				<th class="panier">Suppr</th>
+			</tr>
+			<tbody>
+				{% for article in articles %}
+					<tr>
+						<td class="panier imgPanier"><img class="imgPanier" src='/uploads/images/{{ article.image }}' alt="image produit"></td>
+						<td class="panier">{{article.produit.name}}</td>
+						<td class="panier">{{article.produit.prix }}€</td>
+						<td class="panier action">
+							<a class="moins" href="{{path ('app_panier_downQtt',{'id': article.produit.id}) }}">
+								<i class="fas fa-minus"></i>
+							</a>
+							{{article.quantite}}
+							<a class="plus" href="{{path ('app_panier_upQtt',{'id' : article.produit.id }) }}">
+								<i class="fas fa-plus"></i>
+							</a>
+						</td>
+						<td class="panier ssTotal">{{article.produit.prix * article.quantite }}€</td>
+						<td class="panier action">
+							<a class="suppr" href="{{path ('app_panier_remove', {'id': article.produit.id }) }}" class="btn">
+								<i class="fas fa-trash"></i>
+							</a>
+						</td>
+				    </tr>
+					{% endfor %}
+			{% else %}
+				<tr>
+					<td colspan="9">Votre panier est vide</td>
+				</tr>
+		{% endif %}
+	</tbody>
+	<tfoot>
+		<tr>
+			<td class="total imgPanier" colspan="1"></td>
+			
+			<td class="total bord" colspan="2">Article(s) :
+				{{totalArticle}}</td>
+			
+			<td class="total bord" colspan="2">Total :
+				{{ total }}€</td>
+			<td class="total bord" colspan="1"><a class="vider" href="{{path('app_panier_removeAll')}}">Vider</a></td>
+		</tr>
+	</tfoot>
+</table>
+<button class="panierV">
+	{# <a class="textBtnP" href="{{path('app_commande_confirmation')}}">Valider le panier</a> #}
+</button>
+</div>
+{% endblock %}

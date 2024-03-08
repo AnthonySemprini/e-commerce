@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="flex justify-center items-center mt-6 space-x-2">
-                        <button class="btn font-bold py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-700 flex items-center">Ajouter au Panier</button>
+                        <a href="{{path('app_panier_add', {'id': produit.id})}}" class="btn font-bold py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-700 flex items-center">Ajouter au Panier</a>
                         <button id="favBtn" class="btn font-bold h-10 w-10 flex justify-center items-center ">
                             <i class="far fa-star text-yellow-400 text-3xl"></i>
                         </button>  
