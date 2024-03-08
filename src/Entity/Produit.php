@@ -36,9 +36,8 @@ class Produit
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Categorie $categorie = null;
 
-
-    #[ORM\Column(length: 255)]
-    private ?string $imgUrl = null;
+    #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'produit')]
+    private Collection $images;
 
     public function __construct()
     {
@@ -129,20 +128,6 @@ class Produit
         return $this;
     }
 
-
-
-    public function getImgUrl(): ?string
-    {
-        return $this->imgUrl;
-    }
-
-    public function setImgUrl(string $imgUrl): static
-    {
-        $this->imgUrl = $imgUrl;
-
-        return $this;
-    }
-
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -151,6 +136,36 @@ class Produit
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(image $image): static
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(image $image): static
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getProduit() === $this) {
+                $image->setProduit(null);
+            }
+        }
 
         return $this;
     }

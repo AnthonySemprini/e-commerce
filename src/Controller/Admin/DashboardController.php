@@ -2,9 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Image;
 use App\Entity\Produit;
-use App\Entity\Categorie;
 use App\Entity\Commande;
+use App\Entity\Categorie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -60,6 +61,7 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::section('Produits');
         yield MenuItem::linkToCrud('Voir produits', 'fas fa-eye', Produit::class);
+        yield MenuItem::linkToCrud('Add images', 'fas fa-eye', Image::class);
         
         yield MenuItem::section('Categories');
         yield MenuItem::linkToCrud('Voir categories', 'fas fa-eye', Categorie::class);
