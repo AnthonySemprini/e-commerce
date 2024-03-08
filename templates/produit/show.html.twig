@@ -44,11 +44,11 @@
                                 onclick="changeQuantity(1)">+</button>
                         </div>
                     </div>
-                    <div class="flex justify-center mt-6 space-x-2">
-                        <button class="btn font-bold py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-700">Ajouter
-                            au Panier</button>
-                        <button
-                            class="btn font-bold py-2 px-4 rounded bg-green-500 text-white hover:bg-green-700">Favoris</button>
+                    <div class="flex justify-center items-center mt-6 space-x-2">
+                        <button class="btn font-bold py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-700 flex items-center">Ajouter au Panier</button>
+                        <button id="favBtn" class="btn font-bold h-10 w-10 flex justify-center items-center ">
+                            <i class="far fa-star text-yellow-400 text-3xl"></i>
+                        </button>  
                     </div>
                 </div>
                 <!-- Miniatures -->
@@ -93,6 +93,17 @@
             mainImage.src = clickedImg.src;
             mainImage.alt = clickedImg.alt;
         }
+        document.getElementById('favBtn').addEventListener('click', function() {
+            const starIcon = this.querySelector('i');
+            if (starIcon.classList.contains('far')) { // Étoile vide
+                starIcon.classList.remove('far');
+                starIcon.classList.add('fas'); // Change pour étoile pleine
+            } else {
+                starIcon.classList.remove('fas');
+                starIcon.classList.add('far'); // Change pour étoile vide
+            }
+        });
+    
     </script>
 
 
