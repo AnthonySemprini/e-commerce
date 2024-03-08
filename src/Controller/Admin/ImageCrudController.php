@@ -6,6 +6,7 @@ use App\Entity\Image;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -24,6 +25,7 @@ class ImageCrudController extends AbstractCrudController
             ->setBasePath('uploads/images')
             ->setUploadDir('public/uploads/images')
             ->setSortable(false),
+            BooleanField::new('star'),
         ];
     }
     

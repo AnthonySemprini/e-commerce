@@ -19,6 +19,9 @@ class Image
     #[ORM\ManyToOne(inversedBy: 'images')]
     private ?Produit $produit = null;
 
+    #[ORM\Column]
+    private ?bool $star = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,5 +54,17 @@ class Image
     {
         // Utilisez un attribut approprié de votre entité
         return $this->path; // Supposons que 'path' est le chemin de l'image ou un titre.
+    }
+
+    public function isStar(): ?bool
+    {
+        return $this->star;
+    }
+
+    public function setStar(bool $star): static
+    {
+        $this->star = $star;
+
+        return $this;
     }
 }

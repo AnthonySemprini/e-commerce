@@ -12,9 +12,14 @@
         <div class="flex flex-col md:flex-row items-start">
             <div class="w-full md:w-1/2 p-2 md:p-4">
                 <div id="main-image" class="flex justify-center">
-                    {% if produit.images|length > 0 %}
-                    {% set firstImage = produit.images|first %}
-                    <img class="w-3/4 h-auto object-contain rounded-xl" src="/uploads/images/{{ firstImage.path }}"
+                    {% set starredImage = null %}
+                    {% for image in produit.images %}
+                    {% if image.star %}
+                    {% set starredImage = image %}
+                    {% endif %}
+                    {% endfor %}
+                    {% if starredImage is not null %}
+                    <img class="w-3/4 h-auto object-contain rounded-xl" src="/uploads/images/{{ starredImage.path }}"
                         alt="{{ produit.name }}">
                     {% endif %}
                 </div>
@@ -49,9 +54,22 @@
                 <!-- Miniatures -->
                 <div class="flex justify-center p-4 space-x-2 mt-4">
                     <div class="flex justify-center">
+                        <!-- Afficher d'abord l'image star si elle existe -->
                         {% for image in produit.images %}
+                        {% if image.star %}
                         <img class="h-24 w-auto object-cover cursor-pointer border-2 border-gray-300 rounded-md"
-                            src="/uploads/images/{{ image.path }}" alt="{{ produit.name }}" onclick="changeMainImage(this)">
+                            src="/uploads/images/{{ image.path }}" alt="{{ produit.name }}"
+                            onclick="changeMainImage(this)">
+                        {% endif %}
+                        {% endfor %}
+
+                        <!-- Afficher ensuite les autres images -->
+                        {% for image in produit.images %}
+                        {% if not image.star %}
+                        <img class="h-24 w-auto object-cover cursor-pointer border-2 border-gray-300 rounded-md"
+                            src="/uploads/images/{{ image.path }}" alt="{{ produit.name }}"
+                            onclick="changeMainImage(this)">
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>
