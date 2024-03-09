@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-       
-        <script src="https://kit.fontawesome.com/ef55713c5a.js" crossorigin="anonymous"></script>
 
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
 
-        {% block javascripts %}
-        {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body class="h-[100vh]">
-        <nav class="h-10">
-            <ul class="flex gap-2">
-                <li class=""><a class="" href="{{path('app_home')}}">Home</a></li>
-                <li class=""><a class="" href="{{path('app_produit')}}">Products</a></li>
-                {% if app.user %}
-                <li class=""><a class="" href="{{path('app_logout')}}">Logout</a></li>
-                 {% if is_granted('ROLE_ADMIN') %}
-                 <a href="{{path('admin')}}">Panneau Admin</a>
-                 {% endif %}  
-                 {% else %} 
-                <li class=""><a class="" href="{{path('app_login')}}">Login</a></li>
-                <li class=""><a class="" href="{{path('app_register')}}">Register</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-        {% block body %}{% endblock %}
-        {{ encore_entry_script_tags('app') }}
-    </body>
+    <script src="https://kit.fontawesome.com/ef55713c5a.js" crossorigin="anonymous"></script>
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+
+<body class="h-[100vh]">
+    <nav class="h-12 py-3 px-6 bg-slate-200">
+        <ul class="flex gap-8 font-bold text-xl">
+            <li class=""><a class="" href="{{path('app_home')}}">Home</a></li>
+            <li class=""><a class="" href="{{path('app_produit')}}">Products</a></li>
+            {% if app.user %}
+            <li class=""><a class="" href="{{path('app_logout')}}">Logout</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{path('admin')}}">Panneau Admin</a>
+            {% endif %}
+            {% else %}
+            <li class=""><a class="" href="{{path('app_login')}}">Login</a></li>
+            <li class=""><a class="" href="{{path('app_register')}}">Register</a></li>
+            {% endif %}
+            <li class=""><a class="" href="{{path('app_panier')}}">Panier<i class="fa-solid fa-cart-shopping"></i></a>
+            </li>
+        </ul>
+    </nav>
+    {% block body %}{% endblock %}
+    {{ encore_entry_script_tags('app') }}
+</body>
+
 </html>
