@@ -3,39 +3,40 @@
 {% block title %}Hello PanierController!{% endblock %}
 
 {% block body %}
-<div class="panierPage">
-	<h1>Panier</h1>
+<div class="main flex flex-col ">
+	<h1 class="text-3xl text-center font-bold mb-4">Panier</h1>
 	{% if articles | length > 0 %}
-		<table class="panier">
-			<tr>
-				<th class="panier imgPanier">Image</th>
-				<th class="panier">Produit</th>
-				<th class="panier">Prix</th>
+		<table class="panier mx-10 ">
+			<tr class="border border-black h-10 bg-slate-100">
+				<th class="panier  hidden lg:block" colspan="1"></th>
+				<th class="panier border border-black font-bold text-xl" colspan="1">Produit</th>
+				<th class="panier border border-black font-bold text-xl" colspan="1">Prix</th>
 				
-				<th class="panier">Qtt</th>
+				<th class="panier border border-black font-bold text-xl" colspan="3">Quantité</th>
 				
-				<th class="panier">Sous-total</th>
-				<th class="panier">Suppr</th>
+				<th class="panier border border-black font-bold text-xl" colspan="1">Sous-total</th>
+				<th class="panier border border-black font-bold text-xl" colspan="1">Suppr</th>
 			</tr>
 			<tbody>
 				{% for article in articles %}
-					<tr>
-						<td class="panier imgPanier"><img class="imgPanier" src='/uploads/images/{{ article.image }}' alt="image produit"></td>
-						<td class="panier">{{article.produit.name}}</td>
-						<td class="panier">{{article.produit.prix }}€</td>
-						<td class="panier action">
-							<a class="moins" href="{{path ('app_panier_downQtt',{'id': article.produit.id}) }}">
-								<i class="fas fa-minus"></i>
-							</a>
-							{{article.quantite}}
-							<a class="plus" href="{{path ('app_panier_upQtt',{'id' : article.produit.id }) }}">
-								<i class="fas fa-plus"></i>
-							</a>
-						</td>
-						<td class="panier ssTotal">{{article.produit.prix * article.quantite }}€</td>
-						<td class="panier action">
-							<a class="suppr" href="{{path ('app_panier_remove', {'id': article.produit.id }) }}" class="btn">
-								<i class="fas fa-trash"></i>
+					<tr class="border border-black h-10">
+						<td class="panier  justify-center items-center hidden lg:flex colspan="1"">
+                            <img class="imgPanier h-24 w-auto object-cover rounded-md my-2" src='/uploads/images/{{ article.image }}' alt="image produit">
+                        </td>
+						<td class="panier border border-black text-center font-bold  text-xl"  colspan="1">{{article.produit.name}}<br><a class="text-sm font-normal text-gray-600" href="{{ path('app_show_produit', {'slug': article.produit.slug}) }}">Voir detail</a></td>
+						<td class="panier border border-black text-center font-bold text-xl" colspan="1">{{article.produit.prix }}€</td>
+
+								
+                                <td class="panier action border border-black text-center " colspan="1"><a class="moins p-2 text-center bg-gray-500 rounded-lg text-white font-extrabold" href="{{path ('app_panier_downQtt',{'id': article.produit.id}) }}"><i class="fas fa-minus"></i></a></td>
+
+                                <td class="panier action border border-black text-center min-w-6 font-bold text-xl" colspan="1">{{article.quantite}}</td>
+
+                                <td class="panier action border border-black text-center " colspan="1"><a class="plus p-2 text-center bg-gray-500 rounded-lg text-white font-extrabold" href="{{path ('app_panier_upQtt',{'id' : article.produit.id }) }}"><i class="fas fa-plus"></i></a></td>
+						
+						<td class="panier ssTotal border border-black text-center font-bold text-xl" colspan="1">{{article.produit.prix * article.quantite }}€</td>
+						<td class="panier action border border-black text-center" colspan="1">
+							<a class="suppr text-red-700 text-xl" href="{{path ('app_panier_remove', {'id': article.produit.id }) }}" class="btn">
+								<i class="fas fa-trash "></i>
 							</a>
 						</td>
 				    </tr>
@@ -47,20 +48,25 @@
 		{% endif %}
 	</tbody>
 	<tfoot>
-		<tr>
-			<td class="total imgPanier" colspan="1"></td>
-			
-			<td class="total bord" colspan="2">Article(s) :
-				{{totalArticle}}</td>
-			
-			<td class="total bord" colspan="2">Total :
-				{{ total }}€</td>
-			<td class="total bord" colspan="1"><a class="vider" href="{{path('app_panier_removeAll')}}">Vider</a></td>
+		<tr class="h-10 ">
+			<td class="total img hidden lg:block" colspan="1"></td>
+			<td class="total" colspan="2"></td>
+			<td class="total border border-black text-center bg-slate-100 font-bold text-xl" colspan="3">Article(s) : {{totalArticle}}</td>
+			<td class="total border border-black text-center bg-slate-100 font-bold text-xl" colspan="1">Total : {{ total }}€</td>
+			<td class="total text-center border border-black  font-bold text-white bg-slate-100" colspan="1"><a class="vider py-1 px-3 rounded-lg bg-red-700" href="{{path('app_panier_removeAll')}}">Clear all</a></td>
 		</tr>
 	</tfoot>
 </table>
-<button class="panierV">
-	{# <a class="textBtnP" href="{{path('app_commande_confirmation')}}">Valider le panier</a> #}
+<button class="panier mt-10 font-bold text-xl text-white">
+	<a class="btn  bg-green-700 py-3 px-3 rounded-lg " href="">Valider le panier</a>
 </button>
 </div>
 {% endblock %}
+			
+            
+            
+            
+            
+                
+
+
