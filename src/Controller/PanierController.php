@@ -25,7 +25,7 @@ class PanierController extends AbstractController
         $panierWithData[] = [
             'produit' => $produit,
             'quantite' => $quantite,
-            'image' => $imagePrincipale ? $imagePrincipale->getPath() : null // Assumez que `getPath` retourne le chemin de l'image
+            'image' => $imagePrincipale ? $imagePrincipale->getPath() : null 
         ];
         }
 

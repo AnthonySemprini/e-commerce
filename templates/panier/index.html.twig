@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PanierController!{% endblock %}
+{% block title %}Panier{% endblock %}
 
 {% block body %}
 <div class="main flex flex-col ">
@@ -73,7 +73,7 @@
         </tfoot>
     </table>
     <button class="panier mt-10 font-bold text-xl text-white">
-        <a class="btn  bg-green-700 py-3 px-3 rounded-lg " href="">Valider le panier</a>
+        <a class="btn  bg-green-700 py-3 px-3 rounded-lg " href="{{path('app_commande_confirmation')}}">Valider le panier</a>
     </button>
     {% else %}
     <div class="flex flex-col items-center">
