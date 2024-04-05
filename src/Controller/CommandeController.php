@@ -79,7 +79,8 @@ class CommandeController extends AbstractController
         }
 
         return $this->render('commande/index.html.twig',[
-            'commandeForm' =>$form->createView()
+            'commandeForm' =>$form->createView(),
+            'reference' => $commande->getId()
         ]);
     }
 

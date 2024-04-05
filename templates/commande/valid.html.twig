@@ -47,7 +47,7 @@
                 <p class="text-lg">Montant total : <span class="font-semibold">{{ total }} €</span></p>
             </div>
             
-            <form method="POST" action="{{path('payment_stripe', {id: id})}}">
+            <form method="POST" action="{{path('payment_stripe', {reference: reference})}}">
                 <button class="inline-block mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-150 ease-in-out">Payer par stripe</button>
             </form>
         </div>

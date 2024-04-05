@@ -19,11 +19,11 @@ class PaymentController extends AbstractController
         $this->em = $em;
     }
 
-    #[Route('/order/create-session-stripe/{id}', name: 'payment_stripe')]
-    public function stripeCheckout($id): RedirectResponse
+    #[Route('/order/create-session-stripe/{reference}', name: 'payment_stripe')]
+    public function stripeCheckout($reference): RedirectResponse
     {
 
-        $commande = $this->em->getRepository(Commande::class)->findOneBy(['id' => $id]);
+        $commande = $this->em->getRepository(Commande::class)->findOneBy(['reference' => $reference]);
         dd($commande);
 
         Stripe::setApiKey(sk_test_51OtXk6AHMURQbTn4CK7nsagaha3hGBT0RARTLYAHGxD1V2HjZUxJANwSnOmsxrYo99ED7SLXFgR3iMqLH811KhvW00EH68s3Ey);
