@@ -3,21 +3,36 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+<div class="validCommandePage">
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    <div class="recap">
+        <div class="mb-8">
+            <h2 class="text-black font-semibold text-3xl text-center mt-10 mb-4">Register</h2>
+            {{ form_errors(registrationForm) }}
+        </div>
+        <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-4 mt-10">
+            {{ form_start(registrationForm, {'attr': {'class': 'space-y-4'}}) }}
+                <div>
+                    <label for="{{ registrationForm.email.vars.id }}" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+                </div>
+                
+                <div>
+                    <label for="{{ registrationForm.plainPassword.vars.id }}" class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+                </div>
+                
+                <div>
+                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'leading-tight'}}) }}
+                    <label for="{{ registrationForm.agreeTerms.vars.id }}" class="text-gray-700 text-sm font-bold">Agree to terms</label>
+                </div>
 
-    {{ form_errors(registrationForm) }}
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                <button type="submit" class="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-150 ease-in-out">Register</button>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+</div>
 {% endblock %}

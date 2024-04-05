@@ -3,19 +3,24 @@
 {% block title %}Commande{% endblock %}
 
 {% block body %}
-
+<div class="validCommandePage">
+    <div class="recap">
+        <div class="mb-8">
+            <h2 class="text-black font-semibold text-3xl text-center mt-10 mb-4">Info Commande</h2>
             {{ form_errors(commandeForm) }}
+        </div>
+        <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-4 mt-10">
+            {{ form_start(commandeForm, {'attr': {'class': 'space-y-4'}}) }}
+                {{ form_row(commandeForm.nom, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+                {{ form_row(commandeForm.prenom, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+                {{ form_row(commandeForm.adresse, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+                {{ form_row(commandeForm.cp, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+                {{ form_row(commandeForm.ville, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+                {{ form_row(commandeForm.numTel, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
 
-            {{ form_start(commandeForm) }}
-            {{ form_row(commandeForm.nom) }}
-            {{ form_row(commandeForm.prenom) }}
-            {{ form_row(commandeForm.adresse) }}
-            {{ form_row(commandeForm.cp) }}
-            {{ form_row(commandeForm.ville) }}
-            {{ form_row(commandeForm.numTel) }}
-
-            <button type="submit" >Valider</button>
+                <button type="submit" class="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-150 ease-in-out">Valider</button>
             {{ form_end(commandeForm) }}
-      
-
+        </div>
+    </div>
+</div>
 {% endblock %}
